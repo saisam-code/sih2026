@@ -1,855 +1,21 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07090d">
-<meta name="description" content="A practical student guide to Smart India Hackathon: understand SIH, build the right team, choose a problem, and turn an idea into a strong solution.">
-<title>SIH 2026 — Understand. Team Up. Build.</title>
-
-<style>
-:root{
-  --bg:#05070a;--surface:#0a0e13;--surface2:#0e141b;--line:#202b35;
-  --line2:#33424d;--text:#f5f7fa;--muted:#8997a5;--cyan:#35f1ce;
-  --purple:#9b82ff;--max:1220px;--radius:12px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  line-height:1.5
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;
-  background-image:radial-gradient(#fff .5px,transparent .5px);
-  background-size:6px 6px;
-  mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 80%,transparent)
-}
-a{color:inherit;text-decoration:none}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-.container{width:min(var(--max),calc(100% - 48px));margin:auto}
-
-/* NAV */
-.nav{
-  position:sticky;top:0;z-index:100;background:rgba(5,7,10,.78);
-  backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.07)
-}
-.nav-inner{height:76px;display:flex;align-items:center;gap:28px;position:relative}
-#scrollProgress{
-  position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--cyan);
-  box-shadow:0 0 10px rgba(53,241,206,.7)
-}
-.logo{font-weight:950;letter-spacing:-.07em;font-size:1.15rem;margin-right:auto}
-.logo span{color:var(--cyan)}
-.nav-links{display:flex;gap:26px;color:#aeb8c3;font-size:.78rem;font-weight:800}
-.nav-links a:hover{color:#fff}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  border:1px solid transparent;padding:13px 19px;border-radius:7px;
-  font-weight:900;font-size:.74rem;letter-spacing:.04em;cursor:pointer;
-  transition:.2s;white-space:nowrap
-}
-.btn:hover{transform:translateY(-2px)}
-.btn-primary{background:var(--cyan);color:#03110e;box-shadow:0 8px 30px rgba(53,241,206,.12)}
-.btn-primary:hover{background:#66ffe3}
-.btn-ghost{background:transparent;border-color:#34414d;color:#fff}
-.btn-ghost:hover{border-color:#657584;background:#111820}
-.menu{display:none;background:none;border:0;color:#fff;font-size:24px}
-
-/* HERO */
-.hero{min-height:calc(100vh - 76px);display:grid;align-items:center;position:relative;overflow:hidden}
-.hero:after{
-  content:"";position:absolute;width:560px;height:560px;right:-240px;top:80px;
-  border:1px solid rgba(53,241,206,.08);border-radius:50%;
-  box-shadow:0 0 0 90px rgba(53,241,206,.015),0 0 0 180px rgba(53,241,206,.012)
-}
-.hero-grid{
-  display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center;
-  position:relative;z-index:1
-}
-.eyebrow,.kicker{
-  font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--cyan);font-weight:950
-}
-.eyebrow:before{content:"●";font-size:.45rem;vertical-align:middle;margin-right:9px}
-h1{
-  font-size:clamp(3.3rem,7vw,7rem);line-height:.88;letter-spacing:-.085em;
-  margin:17px 0 28px;max-width:900px
-}
-h1 em{font-style:normal;color:var(--cyan)}
-.lead{font-size:1.04rem;line-height:1.7;color:#aeb9c4;max-width:670px}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0}
-.meta{
-  display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);
-  margin-top:38px;padding-top:19px;gap:20px
-}
-.meta b,.detail b{
-  display:block;font-size:.62rem;color:#657381;text-transform:uppercase;letter-spacing:.16em
-}
-.meta span{display:block;margin-top:5px;font-size:.84rem;font-weight:850}
-
-/* HERO VISUAL */
-.orbit{height:500px;display:grid;place-items:center;position:relative}
-.orbit-core{
-  width:174px;height:174px;border:1px solid rgba(53,241,206,.5);border-radius:50%;
-  display:grid;place-items:center;text-align:center;background:#08110f;
-  box-shadow:0 0 100px rgba(53,241,206,.08);z-index:2
-}
-.orbit-core strong{font-size:1.3rem}
-.orbit-ring{
-  position:absolute;width:360px;height:360px;border:1px dashed #30404b;
-  border-radius:50%;animation:spin 20s linear infinite
-}
-.node{
-  position:absolute;padding:9px 12px;border:1px solid #33414d;background:#0a1016;
-  border-radius:5px;font-size:.61rem;font-weight:950;letter-spacing:.13em
-}
-.n1{top:52px}.n2{right:40px;top:140px}.n3{right:65px;bottom:65px}
-.n4{left:50px;bottom:70px}.n5{left:5px;top:145px}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* SECTIONS */
-section{padding:115px 0}
-.section-head{
-  display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:48px
-}
-.section-head h2{
-  font-size:clamp(2.3rem,4.5vw,4.5rem);letter-spacing:-.075em;
-  line-height:.94;margin:11px 0 0;max-width:800px
-}
-.section-head p{color:var(--muted);max-width:430px;margin:0;font-size:.9rem}
-
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:35px}
-.stat{
-  border:1px solid var(--line);background:#090e14;border-radius:9px;padding:20px
-}
-.stat strong{display:block;font-size:1.7rem;letter-spacing:-.04em}
-.stat span{display:block;color:#7f8d9a;font-size:.72rem;margin-top:4px}
-
-/* TIMELINE */
-.timeline{display:flex;gap:0;overflow:auto;padding:8px 2px 35px}
-.step{min-width:145px;flex:1;position:relative;cursor:pointer}
-.step:not(:last-child):after{
-  content:"";position:absolute;top:22px;left:44px;right:0;border-top:1px solid #293741
-}
-.step-num{
-  width:45px;height:45px;border:1px solid #34424d;border-radius:50%;
-  display:grid;place-items:center;background:#090e14;position:relative;z-index:2;
-  font-size:.66rem;font-weight:950;transition:.2s
-}
-.step:hover .step-num{border-color:var(--cyan)}
-.step.active .step-num{
-  background:var(--cyan);color:#03110e;border-color:var(--cyan);
-  box-shadow:0 0 25px rgba(53,241,206,.18)
-}
-.step-title{margin-top:15px;font-weight:900;font-size:.78rem;max-width:145px}
-.step-desc{display:none;color:#7f8d9a;font-size:.73rem;margin-top:6px;max-width:150px}
-.step.active .step-desc{display:block}
-
-/* CARDS */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.card{
-  background:linear-gradient(145deg,#0d131a,#080c11);border:1px solid var(--line);
-  border-radius:12px;padding:27px;min-height:235px;position:relative;overflow:hidden;
-  transition:.25s
-}
-.card:after{
-  content:"";position:absolute;width:80px;height:1px;left:27px;bottom:0;
-  background:var(--cyan);opacity:.5
-}
-.card:hover{transform:translateY(-5px);border-color:#3b4b58;background:#10171f}
-.num{font-size:.61rem;color:var(--cyan);font-weight:950;letter-spacing:.14em}
-.card h3{font-size:1.32rem;margin:42px 0 10px;letter-spacing:-.035em}
-.card p{color:#8e9ba8;font-size:.86rem;line-height:1.65;margin:0}
-
-/* TEAM FINDER */
-.team-wrap{
-  display:grid;grid-template-columns:.8fr 1.2fr;border:1px solid #293641;
-  border-radius:15px;background:#080d12;overflow:hidden;
-  box-shadow:0 25px 80px rgba(0,0,0,.18)
-}
-.team-copy{
-  padding:48px;background:linear-gradient(145deg,#0d161b,#080d12);
-  border-right:1px solid #293641;position:relative
-}
-.team-copy:before{
-  content:"02";position:absolute;right:30px;top:20px;color:#26343d;
-  font-size:5rem;font-weight:950
-}
-.team-copy blockquote{
-  font-size:clamp(1.8rem,3.2vw,3rem);line-height:1.02;
-  letter-spacing:-.06em;margin:28px 0
-}
-.tag{
-  display:inline-block;padding:6px 9px;border:1px solid #35434e;border-radius:5px;
-  color:#aeb9c4;font-size:.61rem;font-weight:950
-}
-.team-form{padding:48px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.q{margin-bottom:25px}
-.q label{display:block;font-weight:900;font-size:.82rem;margin-bottom:10px}
-.options{display:flex;gap:7px;flex-wrap:wrap}
-.opt{
-  padding:10px 13px;border:1px solid #303e49;border-radius:6px;
-  background:#090f14;color:#9da9b5;font-size:.76rem;transition:.2s
-}
-.opt:hover{border-color:#61717e;color:#fff}
-.opt.selected{border-color:var(--cyan);color:#eafffa;background:#0b211d}
-input,select,textarea{
-  width:100%;background:#070b10;border:1px solid #303e49;color:#fff;
-  border-radius:7px;padding:12px;outline:none;font-size:.84rem
-}
-input:focus,select:focus,textarea:focus{
-  border-color:var(--cyan);box-shadow:0 0 0 3px rgba(53,241,206,.06)
-}
-textarea{min-height:105px;resize:vertical}
-select{appearance:auto}
-.find-result{
-  display:none;border-top:1px solid #293641;margin-top:25px;padding-top:22px
-}
-.find-result.show{display:block}
-.find-result h3{font-size:1.1rem;margin:0 0 7px}
-.find-result p{color:#8e9ba8;font-size:.84rem;margin:0 0 18px}
-
-/* CHECKLIST */
-.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.check{
-  padding:21px;border:1px solid var(--line);border-radius:9px;background:#090e14;transition:.2s
-}
-.check:hover{border-color:#34434e;transform:translateX(3px)}
-.check b{
-  display:block;font-size:.63rem;letter-spacing:.16em;color:var(--cyan);margin-bottom:8px
-}
-.check span{color:#a4afb9;font-size:.86rem}
-
-/* JOURNEY */
-.journey{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
-.journey div{
-  padding:22px 10px;border-top:2px solid var(--cyan);background:#0c1218;
-  font-weight:950;font-size:.68rem;text-align:center
-}
-.journey div:nth-child(2n){border-top-color:var(--purple)}
-
-/* DETAILS */
-.details{
-  display:grid;grid-template-columns:1.25fr .75fr;border:1px solid #2b3842;
-  border-radius:14px;overflow:hidden;background:#0a1016
-}
-.details-main{padding:50px}
-.details-main h2{
-  font-size:clamp(2.7rem,5vw,5.5rem);line-height:.87;letter-spacing:-.08em;margin:0 0 25px
-}
-.details-side{
-  padding:50px;border-left:1px solid #2b3842;display:flex;flex-direction:column;
-  justify-content:center;gap:23px
-}
-.detail span{display:block;margin-top:4px;font-weight:900;font-size:.9rem}
-
-/* FAQ */
-.faq{border-top:1px solid var(--line)}
-.faq-item{border-bottom:1px solid var(--line)}
-.faq-q{
-  width:100%;background:none;border:0;color:#fff;padding:24px 0;text-align:left;
-  display:flex;justify-content:space-between;font-weight:850;cursor:pointer;font-size:.9rem
-}
-.faq-a{max-height:0;overflow:hidden;color:#8997a5;transition:max-height .28s}
-.faq-a p{margin:0 0 23px;max-width:780px;font-size:.85rem}
-.faq-item.open .faq-a{max-height:180px}
-.plus{font-size:20px;color:#73818e;transition:.2s}
-.faq-item.open .plus{transform:rotate(45deg);color:var(--cyan)}
-
-/* FINAL */
-.final{
-  text-align:center;padding:150px 0;border-top:1px solid var(--line);
-  position:relative;overflow:hidden
-}
-.final:before{
-  content:"";position:absolute;width:500px;height:500px;left:50%;top:40%;
-  transform:translate(-50%,-50%);border:1px solid rgba(53,241,206,.06);
-  border-radius:50%;box-shadow:0 0 0 100px rgba(53,241,206,.015),0 0 0 200px rgba(53,241,206,.01)
-}
-.final>*{position:relative}
-.final h2{
-  font-size:clamp(3.2rem,7vw,7.4rem);letter-spacing:-.09em;line-height:.86;
-  margin:13px auto 25px;max-width:1050px
-}
-.final p{color:#929eaa;margin-bottom:30px}
-
-/* FOOTER */
-footer{border-top:1px solid var(--line);padding:38px 0;color:#71808e;font-size:.72rem}
-.footer-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
-.footer-links{display:flex;gap:18px}
-.footer-links a:hover{color:#fff}
-.disclaimer{max-width:650px}
-
-/* ANIMATION */
-.reveal{opacity:0;transform:translateY(22px);transition:.7s ease}
-.reveal.visible{opacity:1;transform:none}
-
-
-.match-card{
-  border:1px solid #293641;border-radius:9px;padding:17px;background:#090f14;
-  margin-top:9px
-}
-.match-top{display:flex;justify-content:space-between;gap:15px;align-items:start}
-.match-name{font-weight:950;font-size:.9rem}
-.match-score{color:var(--cyan);font-weight:950;font-size:.67rem;letter-spacing:.08em}
-.match-meta{color:#7f8d9a;font-size:.72rem;margin-top:5px}
-.match-skills{display:flex;gap:5px;flex-wrap:wrap;margin:12px 0}
-.match-skill{
-  border:1px solid #33424d;border-radius:5px;padding:5px 7px;
-  color:#a9b5c0;font-size:.62rem
-}
-.status{
-  display:inline-block;border-radius:5px;padding:5px 8px;font-size:.6rem;
-  font-weight:950;letter-spacing:.08em
-}
-.status.pending{border:1px solid #3b4852;color:#b6c0c8}
-.status.accepted{border:1px solid #2d7667;color:var(--cyan)}
-.status.rejected{border:1px solid #5b3b43;color:#d69aa8}
-.section-mini{
-  font-size:.65rem;color:var(--cyan);font-weight:950;letter-spacing:.16em;
-  text-transform:uppercase;margin:0 0 10px
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .nav-links{
-    display:none;position:absolute;top:76px;left:0;right:0;padding:18px 24px;
-    background:#070a0e;border-bottom:1px solid var(--line);flex-direction:column;gap:17px
-  }
-  .nav-links.open{display:flex}
-  .menu{display:block}.nav .btn{display:none}
-  .hero-grid,.team-wrap,.details{grid-template-columns:1fr}
-  .team-copy{border-right:0;border-bottom:1px solid #293641}
-  .details-side{border-left:0;border-top:1px solid #2b3842}
-  .cards{grid-template-columns:1fr 1fr}
-  .journey{grid-template-columns:repeat(3,1fr)}
-  .section-head{display:block}.section-head p{margin-top:16px}
-  .orbit{height:380px}.stats{grid-template-columns:1fr 1fr}
-}
-@media(max-width:580px){
-  .container{width:min(var(--max),calc(100% - 28px))}
-  section{padding:80px 0}
-  .cards,.checklist,.form-row{grid-template-columns:1fr}
-  .journey{grid-template-columns:1fr 1fr}
-  .meta{grid-template-columns:1fr}
-  .orbit{display:none}
-  h1{font-size:3.5rem}
-  .team-copy,.team-form,.details-main,.details-side{padding:28px}
-  .section-head{margin-bottom:32px}
-  .section-head h2{font-size:2.45rem}
-}
-</style>
-</head>
-
-<body>
-<nav class="nav">
-  <div class="container nav-inner">
-    <div id="scrollProgress"></div>
-    <a class="logo" href="#top">SIH <span>2026</span></a>
-
-    <div class="nav-links" id="navLinks">
-      <a href="#what">What is SIH?</a>
-      <a href="#how">How It Works</a>
-      <a href="#team">Find a Team</a>
-      <a href="#learn">What You'll Learn</a>
-      <a href="#faq">FAQ</a>
-    </div>
-
-    <a class="btn btn-primary" href="#team">FIND A TEAM →</a>
-    <button class="menu" id="menu" aria-label="Open navigation">☰</button>
-  </div>
-</nav>
-
-<main id="top">
-
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="reveal">
-      <div class="eyebrow">Student Guide • SIH 2026</div>
-      <h1>Understand <em>SIH.</em><br>Find your team.<br>Build something real.</h1>
-      <p class="lead">
-        New to Smart India Hackathon? Start here. Learn how SIH works, understand
-        problem statements, find students with complementary skills, and turn an
-        idea into a solution your team can actually build and explain.
-      </p>
-
-      <div class="actions">
-        <a class="btn btn-primary" href="#team">FIND / JOIN A TEAM</a>
-        <a class="btn btn-ghost" href="#how">SEE HOW SIH WORKS</a>
-      </div>
-
-      <div class="meta">
-        <div><b>For</b><span>Students & Beginners</span></div>
-        <div><b>Focus</b><span>Team + Solution</span></div>
-        <div><b>Format</b><span>Learn → Build → Pitch</span></div>
-      </div>
-    </div>
-
-    <div class="orbit reveal" aria-hidden="true">
-      <div class="orbit-ring"></div>
-      <div class="orbit-core"><strong>SIH<br>JOURNEY</strong></div>
-      <div class="node n1">PROBLEM</div>
-      <div class="node n2">TEAM</div>
-      <div class="node n3">BUILD</div>
-      <div class="node n4">PITCH</div>
-      <div class="node n5">IMPACT</div>
-    </div>
-  </div>
-</section>
-
-<section id="what">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="kicker">01 / SIH IN SIMPLE TERMS</div>
-        <h2>What is Smart India Hackathon?</h2>
-      </div>
-      <p>
-        SIH is a problem-solving journey. Teams study a challenge, design a
-        practical solution, build a prototype and communicate why it matters.
-      </p>
-    </div>
-
-    <div class="cards">
-      <article class="card reveal">
-        <div class="num">01 — PROBLEM</div>
-        <h3>Start with a real challenge.</h3>
-        <p>Understand the users, context, constraints and actual need before deciding what technology to use.</p>
-      </article>
-
-      <article class="card reveal">
-        <div class="num">02 — TEAM</div>
-        <h3>Bring different skills together.</h3>
-        <p>A strong team can combine development, AI/ML, design, research, domain knowledge and communication.</p>
-      </article>
-
-      <article class="card reveal">
-        <div class="num">03 — SOLUTION</div>
-        <h3>Turn the idea into something testable.</h3>
-        <p>Build a prototype or MVP, validate the important assumptions and improve the weak parts quickly.</p>
-      </article>
-    </div>
-
-    <div class="stats reveal">
-      <div class="stat"><strong>01</strong><span>Understand the problem</span></div>
-      <div class="stat"><strong>02</strong><span>Build the right team</span></div>
-      <div class="stat"><strong>03</strong><span>Develop the solution</span></div>
-      <div class="stat"><strong>04</strong><span>Pitch with clarity</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="kicker">02 / THE SIH JOURNEY</div>
-        <h2>From problem statement to pitch.</h2>
-      </div>
-      <p>Click each stage for the practical version of what your team needs to think about.</p>
-    </div>
-    <div class="timeline reveal" id="timeline"></div>
-  </div>
-</section>
-
-<section id="team">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="kicker">03 / FIND YOUR TEAM</div>
-        <h2>Find people who complete your team.</h2>
-      </div>
-      <p>
-        Create a short SIH profile. The matcher ranks students by complementary
-        skills and shared problem interests, then lets you send a team request.
-      </p>
-    </div>
-
-    <div class="team-wrap reveal">
-      <div class="team-copy">
-        <span class="tag">HOW MATCHING WORKS</span>
-        <blockquote>Tell us what you know. We'll help you find what your team is missing.</blockquote>
-        <p style="color:#8f9baa">
-          The system prioritises complementary skills rather than simply matching
-          people with the same skills.
-        </p>
-
-        <div style="margin-top:30px">
-          <div class="num">MATCH SIGNALS</div>
-          <p style="color:#a4afb9;margin:8px 0 0;font-size:.84rem">
-            Skills • Problem interest • Experience • Team preference
-          </p>
-        </div>
-
-        <div id="authState" style="margin-top:28px;padding-top:22px;border-top:1px solid #293641">
-          <div class="num">ACCOUNT</div>
-          <p id="authText" style="color:#8997a5;font-size:.78rem;margin:8px 0 12px">
-            Sign in to save your profile and contact potential teammates.
-          </p>
-          <button class="btn btn-ghost" id="authButton" type="button">SIGN IN / CREATE ACCOUNT</button>
-          <button class="btn btn-ghost" id="signOutButton" type="button" style="display:none">SIGN OUT</button>
-        </div>
-      </div>
-
-      <div class="team-form">
-        <div class="form-row">
-          <div class="q">
-            <label for="name">Your name</label>
-            <input id="name" type="text" placeholder="e.g. Alex">
-          </div>
-
-          <div class="q">
-            <label for="college">College</label>
-            <input id="college" type="text" placeholder="e.g. ABC Institute">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="q">
-            <label for="year">Year</label>
-            <select id="year">
-              <option value="">Select</option>
-              <option>1st Year</option>
-              <option>2nd Year</option>
-              <option>3rd Year</option>
-              <option>4th Year</option>
-              <option>Postgraduate</option>
-            </select>
-          </div>
-
-          <div class="q">
-            <label for="experience">Experience</label>
-            <select id="experience">
-              <option value="">Select</option>
-              <option>Beginner</option>
-              <option>Some project experience</option>
-              <option>Experienced</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="q">
-          <label>What can you contribute?</label>
-          <div class="options" data-group="skills">
-            <button class="opt" type="button">Development</button>
-            <button class="opt" type="button">AI / ML</button>
-            <button class="opt" type="button">UI / UX</button>
-            <button class="opt" type="button">IoT</button>
-            <button class="opt" type="button">Cybersecurity</button>
-            <button class="opt" type="button">Research</button>
-            <button class="opt" type="button">Domain Knowledge</button>
-            <button class="opt" type="button">Pitching</button>
-          </div>
-        </div>
-
-        <div class="q">
-          <label>What are you looking for?</label>
-          <div class="options" data-group="looking">
-            <button class="opt" type="button">Join a Team</button>
-            <button class="opt" type="button">Find Teammates</button>
-            <button class="opt" type="button">Find a Problem</button>
-            <button class="opt" type="button">Build a New Team</button>
-          </div>
-        </div>
-
-        <div class="q">
-          <label>Problem domains</label>
-          <div class="options" data-group="domains">
-            <button class="opt" type="button">Healthcare</button>
-            <button class="opt" type="button">Agriculture</button>
-            <button class="opt" type="button">Education</button>
-            <button class="opt" type="button">Cybersecurity</button>
-            <button class="opt" type="button">Sustainability</button>
-            <button class="opt" type="button">Smart Cities</button>
-            <button class="opt" type="button">FinTech</button>
-            <button class="opt" type="button">Other</button>
-          </div>
-        </div>
-
-        <div class="q">
-          <label for="interest">What kind of problem interests you?</label>
-          <textarea id="interest" placeholder="Example: AI for healthcare, campus safety, agricultural automation..."></textarea>
-        </div>
-
-        <button class="btn btn-primary" id="teamSubmit" type="button">SAVE PROFILE & FIND TEAMMATES →</button>
-
-        <div class="find-result" id="teamResult"></div>
-        <div id="matches" style="margin-top:16px"></div>
-        <div id="requests" style="margin-top:16px"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="kicker">04 / HOW TO BUILD A TEAM</div>
-        <h2>Choose complementary skills.</h2>
-      </div>
-      <p>Start with what the problem needs, not just the technologies you already know.</p>
-    </div>
-
-    <div class="cards">
-      <article class="card reveal">
-        <div class="num">01 — TECH</div>
-        <h3>Build the product.</h3>
-        <p>Developers, AI/ML engineers, data specialists and IoT builders turn the concept into a working prototype.</p>
-      </article>
-
-      <article class="card reveal">
-        <div class="num">02 — PRODUCT</div>
-        <h3>Make it usable.</h3>
-        <p>UI/UX, research and domain-focused members help the team understand users and create a practical experience.</p>
-      </article>
-
-      <article class="card reveal">
-        <div class="num">03 — COMMUNICATION</div>
-        <h3>Make the solution clear.</h3>
-        <p>Strong explanation matters: problem, approach, technology, feasibility, impact and evidence should connect.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="learn">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="kicker">05 / WHAT YOU SHOULD LEARN</div>
-        <h2>From “I have no idea” to “I can explain it.”</h2>
-      </div>
-    </div>
-
-    <div class="checklist">
-      <div class="check reveal"><b>UNDERSTAND</b><span>How the SIH journey works</span></div>
-      <div class="check reveal"><b>ANALYSE</b><span>How to read a problem statement</span></div>
-      <div class="check reveal"><b>TEAM</b><span>How to find complementary teammates</span></div>
-      <div class="check reveal"><b>IDEATE</b><span>How to develop practical solution directions</span></div>
-      <div class="check reveal"><b>BUILD</b><span>How ideas become prototypes or MVPs</span></div>
-      <div class="check reveal"><b>PITCH</b><span>How to present and defend your solution</span></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="kicker">06 / PRACTICE</div>
-        <h2>Think like a hackathon team.</h2>
-      </div>
-      <p>Use this mini exercise before choosing technology.</p>
-    </div>
-
-    <div class="team-wrap reveal">
-      <div class="team-copy">
-        <span class="tag">SAMPLE SIH-STYLE PROBLEM</span>
-        <blockquote>“How can technology improve waste management on college campuses?”</blockquote>
-        <p style="color:#8f9baa">
-          There is no single correct answer. Start by understanding who experiences the problem,
-          why it happens and what evidence you would need.
-        </p>
-      </div>
-
-      <div class="team-form">
-        <div class="q">
-          <label>Who is affected most?</label>
-          <div class="options" data-group="affected">
-            <button class="opt" type="button">Students</button>
-            <button class="opt" type="button">Faculty</button>
-            <button class="opt" type="button">Administration</button>
-            <button class="opt" type="button">Everyone</button>
-          </div>
-        </div>
-
-        <div class="q">
-          <label for="idea">What would you build?</label>
-          <textarea id="idea" placeholder="Describe your solution in a few sentences..."></textarea>
-        </div>
-
-        <div class="q">
-          <label>Which technology would you consider?</label>
-          <div class="options" data-group="tech">
-            <button class="opt" type="button">Web</button>
-            <button class="opt" type="button">Mobile</button>
-            <button class="opt" type="button">AI / ML</button>
-            <button class="opt" type="button">IoT</button>
-            <button class="opt" type="button">Data Analytics</button>
-            <button class="opt" type="button">Other</button>
-          </div>
-        </div>
-
-        <button class="btn btn-primary" id="analyseIdea" type="button">ANALYSE MY APPROACH</button>
-
-        <div class="find-result" id="ideaResult">
-          <h3>Now test the idea against reality.</h3>
-          <p>
-            Ask: Who will use it? What changes for them? Can the team build a credible prototype?
-            How will you measure whether it works?
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="kicker">07 / THE WORKFLOW</div>
-        <h2>Learn → Analyse → Build → Pitch.</h2>
-      </div>
-    </div>
-
-    <div class="journey reveal">
-      <div>LEARN</div>
-      <div>UNDERSTAND</div>
-      <div>ANALYSE</div>
-      <div>BUILD</div>
-      <div>TEST</div>
-      <div>PITCH</div>
-    </div>
-
-    <div class="cards" style="margin-top:18px">
-      <div class="card reveal">
-        <h3>Start with the user</h3>
-        <p>Do not begin with “Which AI model should we use?” Begin with “What problem are we solving, and for whom?”</p>
-      </div>
-      <div class="card reveal">
-        <h3>Build an MVP</h3>
-        <p>Prioritise the smallest useful version that proves the core idea instead of building every feature at once.</p>
-      </div>
-      <div class="card reveal">
-        <h3>Prepare the pitch</h3>
-        <p>Connect the problem, solution, implementation, feasibility and impact into one clear story.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="workshop">
-  <div class="container">
-    <div class="details reveal">
-      <div class="details-main">
-        <div class="kicker">08 / OPTIONAL WORKSHOP</div>
-        <h2>LEARN SIH<br>BEFORE YOU BUILD.</h2>
-        <p style="color:#9ba6b3;max-width:550px">
-          An independent educational workshop for students who want to understand
-          the SIH process, practise problem analysis and meet potential teammates.
-        </p>
-        <a class="btn btn-primary" href="#team">FIND TEAMMATES FIRST</a>
-      </div>
-
-      <div class="details-side">
-        <div class="detail"><b>FORMAT</b><span>Interactive learning</span></div>
-        <div class="detail"><b>FOCUS</b><span>SIH + Team + Solution</span></div>
-        <div class="detail"><b>EXPERIENCE</b><span>Beginner friendly</span></div>
-        <div class="detail"><b>ORGANIZED BY</b><span>Student / Club Initiative</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="kicker">09 / FAQ</div>
-        <h2>Questions students actually ask.</h2>
-      </div>
-    </div>
-
-    <div class="faq reveal" id="faqList">
-      <div class="faq-item">
-        <button class="faq-q" type="button">Do I need coding experience?<span class="plus">+</span></button>
-        <div class="faq-a"><p>No. Different team roles can contribute, including design, research, domain knowledge and communication. Technical skills become important when the team builds its solution.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button">Can beginners participate?<span class="plus">+</span></button>
-        <div class="faq-a"><p>Yes. This page is specifically structured to help students understand the process before jumping into a team or problem statement.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button">Do I need a team already?<span class="plus">+</span></button>
-        <div class="faq-a"><p>No. Use the team section above to identify your skills and what kind of teammates you are looking for.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button">Should everyone on the team be a developer?<span class="plus">+</span></button>
-        <div class="faq-a"><p>No. A balanced team can include development, AI/ML, UI/UX, research, domain expertise and presentation skills depending on the problem.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button">How do we choose a problem statement?<span class="plus">+</span></button>
-        <div class="faq-a"><p>Understand the context and users first. Then evaluate whether your team has the skills, time and access to build a credible solution.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button">What should we build first?<span class="plus">+</span></button>
-        <div class="faq-a"><p>Build the smallest prototype that can test the most important assumption behind your solution.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button">Are these official SIH rules?<span class="plus">+</span></button>
-        <div class="faq-a"><p>This is an independent educational guide. Always verify current eligibility, team-size requirements, submission rules, selection criteria and deadlines against official SIH information.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="final">
-  <div class="container reveal">
-    <div class="kicker">THE POINT</div>
-    <h2>Don't just hear about SIH.<br><span style="color:var(--cyan)">Build your way into it.</span></h2>
-    <p>Understand the problem. Find the right people. Build something you can defend.</p>
-    <a class="btn btn-primary" href="#team">FIND / JOIN A TEAM →</a>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container footer-grid">
-    <div>
-      <strong style="color:#fff">SIH 2026 STUDENT GUIDE</strong>
-      <div style="margin-top:7px">Team Formation • Problem Solving • Hackathon Prep</div>
-    </div>
-
-    <div class="footer-links">
-      <a href="#what">SIH</a>
-      <a href="#team">Find a Team</a>
-      <a href="#faq">FAQ</a>
-    </div>
-
-    <div class="disclaimer">
-      Independent educational/promotional resource. This is not the official SIH website.
-      Verify current SIH rules, dates and eligibility through official sources before participating.
-    </div>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-
-  /* ============================================================
-  nuvu gope broo kadu annadam lee ee web nii hack chesoo lekapothe nanu waste prove cheyadam enduku brooo ee oka sariki vadileyiii ayyaa i kindly request.....!!!!!
-   ============================================================ */
-  
 const SUPABASE_URL = "https://fadjizlqunpimwfjwckc.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_vyH0tlvbDYCzRjTFEqNBHw_RWCwe8DF";
 
-document.getElementById("unusedTeamFormLink").href = "#team";
+const sbConfigured =
+  SUPABASE_URL.startsWith("https://") &&
+  SUPABASE_ANON_KEY &&
+  !SUPABASE_URL.includes("YOUR_SUPABASE");
 
-/* SIH journey */
+const sb = sbConfigured
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
+
+
+/* ============================================================
+   SIH JOURNEY
+   ============================================================ */
+
 const steps = [
   ["01","Problem Statement","Understand the challenge, users, context and constraints."],
   ["02","Build Your Team","Bring complementary skills together instead of duplicating the same skill."],
@@ -864,456 +30,1034 @@ const steps = [
 
 const timeline = document.getElementById("timeline");
 
-steps.forEach((s,i)=>{
+steps.forEach((s, i) => {
   const el = document.createElement("div");
+
   el.className = "step" + (i === 0 ? " active" : "");
+
   el.innerHTML = `
     <div class="step-num">${s[0]}</div>
     <div class="step-title">${s[1]}</div>
     <div class="step-desc">${s[2]}</div>
   `;
+
   el.onclick = () => {
-    document.querySelectorAll(".step").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".step")
+      .forEach(x => x.classList.remove("active"));
+
     el.classList.add("active");
   };
+
   timeline.appendChild(el);
 });
 
-/* Multi-choice buttons */
-document.querySelectorAll(".options").forEach(group=>{
-  group.addEventListener("click",e=>{
-    if(!e.target.classList.contains("opt")) return;
-    group.querySelectorAll(".opt").forEach(x=>x.classList.remove("selected"));
+
+/* ============================================================
+   MULTI-CHOICE BUTTONS
+   ============================================================ */
+
+document.querySelectorAll(".options").forEach(group => {
+  group.addEventListener("click", e => {
+    if (!e.target.classList.contains("opt")) return;
+
+    group.querySelectorAll(".opt")
+      .forEach(x => x.classList.remove("selected"));
+
     e.target.classList.add("selected");
   });
 });
 
+
 /* ============================================================
-  nuvu gope broo kadu annadam lee ee web nii hack chesoo lekapothe nanu waste prove cheyadam enduku brooo ee oka sariki vadileyiii ayyaa i kindly request.....!!!!!
+   TEAM FINDER
    ============================================================ */
 
-const SUPABASE_URL ;
-const SUPABASE_ANON_KEY;
-const sbConfigured =
-  SUPABASE_URL.startsWith("https://") &&
-  SUPABASE_ANON_KEY &&
-  !SUPABASE_URL.includes("YOUR_SUPABASE");
+const selected = group => [
+  ...document.querySelectorAll(
+    `.options[data-group="${group}"] .opt.selected`
+  )
+].map(x => x.textContent.trim());
 
-const sb = sbConfigured
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-  : null;
 
-const selected = group => [...document.querySelectorAll(
-  `.options[data-group="${group}"] .opt.selected`
-)].map(x => x.textContent.trim());
-
-function escapeHtml(value){
+function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
   }[c]));
 }
 
-function showTeamMessage(title, text, buttonHtml=""){
+
+function showTeamMessage(title, text, buttonHtml = "") {
   const box = document.getElementById("teamResult");
-  box.innerHTML = `<h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p>${buttonHtml}`;
+
+  box.innerHTML = `
+    <h3>${escapeHtml(title)}</h3>
+    <p>${escapeHtml(text)}</p>
+    ${buttonHtml}
+  `;
+
   box.classList.add("show");
 }
 
-async function currentUser(){
-  if(!sb) return null;
-  const {data:{user}} = await sb.auth.getUser();
+
+async function currentUser() {
+  if (!sb) return null;
+
+  const {
+    data: { user }
+  } = await sb.auth.getUser();
+
   return user;
 }
 
-async function refreshAuthUI(){
+
+/* ============================================================
+   AUTH UI
+   ============================================================ */
+
+async function refreshAuthUI() {
   const text = document.getElementById("authText");
   const authButton = document.getElementById("authButton");
   const signOut = document.getElementById("signOutButton");
-  if(!sb){
-    text.textContent = "Connect your Supabase project in the JavaScript configuration.";
+
+  if (!sb) {
+    text.textContent =
+      "Connect your Supabase project in the JavaScript configuration.";
+
     authButton.style.display = "inline-flex";
     signOut.style.display = "none";
+
     return;
   }
+
   const user = await currentUser();
-  if(user){
+
+  if (user) {
     text.textContent = `Signed in as ${user.email}.`;
+
     authButton.style.display = "none";
     signOut.style.display = "inline-flex";
-    loadMyRequests();
-  }else{
-    text.textContent = "Sign in to save your profile and contact potential teammates.";
+
+    await loadMyRequests();
+  } else {
+    text.textContent =
+      "Sign in to save your profile and contact potential teammates.";
+
     authButton.style.display = "inline-flex";
     signOut.style.display = "none";
   }
 }
 
-async function signInWithEmail(){
-  if(!sb){
+
+/* ============================================================
+   SIGN IN / SIGN UP
+   ============================================================ */
+
+async function signInWithEmail() {
+  if (!sb) {
     showTeamMessage(
       "Supabase is not connected",
-      "Replace SUPABASE_URL and SUPABASE_ANON_KEY in this HTML with your project values."
+      "Check your Supabase URL and publishable key."
     );
+
     return;
   }
 
   const email = prompt("Email address:");
-  if(!email) return;
-  const password = prompt("Password (minimum 6 characters):");
-  if(!password) return;
 
-  let result = await sb.auth.signInWithPassword({email,password});
+  if (!email) return;
 
-  if(result.error){
-    result = await sb.auth.signUp({email,password});
-  }
-
-  if(result.error){
-    showTeamMessage("Authentication failed", result.error.message);
-    return;
-  }
-
-  showTeamMessage("Signed in", "Your account is ready. Complete your profile and save it.");
-  await refreshAuthUI();
-}
-
-async function signOut(){
-  if(sb) await sb.auth.signOut();
-  document.getElementById("matches").innerHTML = "";
-  document.getElementById("requests").innerHTML = "";
-  showTeamMessage("Signed out", "Sign in again when you want to use team matching.");
-  refreshAuthUI();
-}
-
-async function saveTeamProfile(){
-  const user = await currentUser();
-
-  if(!user){
-    showTeamMessage(
-      "Sign in first",
-      "Create or sign in to your account so the profile can be saved and matched.",
-      `<button class="btn btn-primary" type="button" onclick="signInWithEmail()">SIGN IN / CREATE ACCOUNT</button>`
-    );
-    return;
-  }
-
-  const name = document.getElementById("name").value.trim();
-  const college = document.getElementById("college").value.trim();
-  const year = document.getElementById("year").value;
-  const experience = document.getElementById("experience").value;
-  const skills = selected("skills");
-  const lookingFor = selected("looking");
-  const domains = selected("domains");
-  const problemInterest = document.getElementById("interest").value.trim();
-
-  if(!name || !college || !year || !experience || !skills.length || !lookingFor.length || !domains.length){
-    showTeamMessage(
-      "Complete your profile",
-      "Name, college, year, experience, at least one skill, one team preference and one problem domain are required."
-    );
-    return;
-  }
-
-  const {error: profileError} = await sb.from("profiles").upsert({
-    id:user.id,
-    name,
-    college,
-    year,
-    experience,
-    looking_for:lookingFor,
-    problem_interest:problemInterest,
-    domains
-  });
-
-  if(profileError){
-    showTeamMessage("Could not save profile", profileError.message);
-    return;
-  }
-
-  const {error: deleteError} = await sb.from("profile_skills").delete().eq("profile_id",user.id);
-  if(deleteError){
-    showTeamMessage("Could not update skills", deleteError.message);
-    return;
-  }
-
-  const {error: skillError} = await sb.from("profile_skills").insert(
-    skills.map(skill => ({profile_id:user.id,skill}))
+  const password = prompt(
+    "Password (minimum 6 characters):"
   );
 
-  if(skillError){
-    showTeamMessage("Could not save skills", skillError.message);
+  if (!password) return;
+
+  let result = await sb.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  /*
+   * If login fails, try creating the account.
+   */
+  if (result.error) {
+    result = await sb.auth.signUp({
+      email,
+      password
+    });
+  }
+
+  if (result.error) {
+    showTeamMessage(
+      "Authentication failed",
+      result.error.message
+    );
+
     return;
   }
 
   showTeamMessage(
+    "Signed in",
+    "Your account is ready. Complete your profile and save it."
+  );
+
+  await refreshAuthUI();
+}
+
+
+async function signOut() {
+  if (sb) {
+    await sb.auth.signOut();
+  }
+
+  document.getElementById("matches").innerHTML = "";
+  document.getElementById("requests").innerHTML = "";
+
+  showTeamMessage(
+    "Signed out",
+    "Sign in again when you want to use team matching."
+  );
+
+  await refreshAuthUI();
+}
+
+
+/* ============================================================
+   SAVE PROFILE
+   ============================================================ */
+
+async function saveTeamProfile() {
+  const user = await currentUser();
+
+  if (!user) {
+    showTeamMessage(
+      "Sign in first",
+      "Create or sign in to your account so the profile can be saved and matched.",
+      `<button class="btn btn-primary"
+        type="button"
+        onclick="signInWithEmail()">
+        SIGN IN / CREATE ACCOUNT
+      </button>`
+    );
+
+    return;
+  }
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const college =
+    document.getElementById("college").value.trim();
+
+  const year =
+    document.getElementById("year").value;
+
+  const experience =
+    document.getElementById("experience").value;
+
+  const skills =
+    selected("skills");
+
+  const lookingFor =
+    selected("looking");
+
+  const domains =
+    selected("domains");
+
+  const problemInterest =
+    document.getElementById("interest").value.trim();
+
+
+  if (
+    !name ||
+    !college ||
+    !year ||
+    !experience ||
+    !skills.length ||
+    !lookingFor.length ||
+    !domains.length
+  ) {
+    showTeamMessage(
+      "Complete your profile",
+      "Name, college, year, experience, at least one skill, one team preference and one problem domain are required."
+    );
+
+    return;
+  }
+
+
+  /*
+   * Save main profile
+   */
+  const { error: profileError } =
+    await sb
+      .from("profiles")
+      .upsert({
+        id: user.id,
+        name,
+        college,
+        year,
+        experience,
+        looking_for: lookingFor,
+        problem_interest: problemInterest,
+        domains
+      });
+
+
+  if (profileError) {
+    showTeamMessage(
+      "Could not save profile",
+      profileError.message
+    );
+
+    return;
+  }
+
+
+  /*
+   * Replace old skills
+   */
+  const { error: deleteError } =
+    await sb
+      .from("profile_skills")
+      .delete()
+      .eq("profile_id", user.id);
+
+
+  if (deleteError) {
+    showTeamMessage(
+      "Could not update skills",
+      deleteError.message
+    );
+
+    return;
+  }
+
+
+  /*
+   * Insert new skills
+   */
+  const { error: skillError } =
+    await sb
+      .from("profile_skills")
+      .insert(
+        skills.map(skill => ({
+          profile_id: user.id,
+          skill
+        }))
+      );
+
+
+  if (skillError) {
+    showTeamMessage(
+      "Could not save skills",
+      skillError.message
+    );
+
+    return;
+  }
+
+
+  showTeamMessage(
     "Profile saved",
-    "Your profile is now searchable. We are ranking compatible students below."
+    "Your profile is now searchable. Compatible students are shown below."
   );
 
   await findMatches();
   await loadMyRequests();
 }
 
-function calculateMatch(me, candidate, mySkills){
-  const candidateSkills = (candidate.profile_skills || []).map(x => x.skill);
+
+/* ============================================================
+   MATCHING ALGORITHM
+   ============================================================ */
+
+function calculateMatch(me, candidate, mySkills) {
+
+  const candidateSkills =
+    (candidate.profile_skills || [])
+      .map(x => x.skill);
+
   const mine = new Set(mySkills);
-  const candidateSet = new Set(candidateSkills);
 
-  const complementary = candidateSkills.filter(x => !mine.has(x)).length;
-  const sharedSkills = candidateSkills.filter(x => mine.has(x)).length;
+  const complementary =
+    candidateSkills.filter(
+      x => !mine.has(x)
+    ).length;
 
-  const myDomains = new Set(me.domains || []);
-  const candidateDomains = candidate.domains || [];
-  const domainOverlap = candidateDomains.filter(x => myDomains.has(x)).length;
+  const myDomains =
+    new Set(me.domains || []);
+
+  const candidateDomains =
+    candidate.domains || [];
+
+  const domainOverlap =
+    candidateDomains.filter(
+      x => myDomains.has(x)
+    ).length;
+
 
   const experienceScore =
-    me.experience === candidate.experience ? 10 :
-    me.experience === "Experienced" || candidate.experience === "Experienced" ? 7 : 5;
+    me.experience === candidate.experience
+      ? 10
+      : (
+          me.experience === "Experienced" ||
+          candidate.experience === "Experienced"
+        )
+          ? 7
+          : 5;
+
+
+  const lookingFor =
+    Array.isArray(candidate.looking_for)
+      ? candidate.looking_for
+      : [];
+
 
   const preferenceScore =
-    String(candidate.looking_for || "").includes("Join a Team") ||
-    String(candidate.looking_for || "").includes("Find Teammates") ? 10 : 5;
+    lookingFor.includes("Join a Team") ||
+    lookingFor.includes("Find Teammates")
+      ? 10
+      : 5;
 
-  const raw = 45 + Math.min(25, complementary * 7)
-                 + Math.min(20, domainOverlap * 10)
-                 + Math.min(10, experienceScore)
-                 + Math.min(10, preferenceScore);
 
-  return Math.max(50, Math.min(99, Math.round(raw)));
+  const raw =
+    45 +
+    Math.min(25, complementary * 7) +
+    Math.min(20, domainOverlap * 10) +
+    Math.min(10, experienceScore) +
+    Math.min(10, preferenceScore);
+
+
+  return Math.max(
+    50,
+    Math.min(99, Math.round(raw))
+  );
 }
 
-async function findMatches(){
-  const user = await currentUser();
-  if(!user) return;
 
-  const {data:me,error:meError} = await sb
+/* ============================================================
+   FIND MATCHES
+   ============================================================ */
+
+async function findMatches() {
+
+  const user = await currentUser();
+
+  if (!user) return;
+
+
+  const {
+    data: me,
+    error: meError
+  } = await sb
     .from("profiles")
-    .select("id,name,college,year,experience,looking_for,problem_interest,domains")
-    .eq("id",user.id)
+    .select(`
+      id,
+      name,
+      college,
+      year,
+      experience,
+      looking_for,
+      problem_interest,
+      domains
+    `)
+    .eq("id", user.id)
     .single();
 
-  if(meError){
-    showTeamMessage("Create your profile first", "Save your profile before searching for teammates.");
+
+  if (meError) {
+    showTeamMessage(
+      "Create your profile first",
+      "Save your profile before searching for teammates."
+    );
+
     return;
   }
 
-  const {data:mySkills} = await sb
+
+  const {
+    data: mySkills,
+    error: mySkillsError
+  } = await sb
     .from("profile_skills")
     .select("skill")
-    .eq("profile_id",user.id);
+    .eq("profile_id", user.id);
 
-  const mySkillNames = (mySkills || []).map(x => x.skill);
 
-  const {data:people,error} = await sb
+  if (mySkillsError) {
+    showTeamMessage(
+      "Could not load your skills",
+      mySkillsError.message
+    );
+
+    return;
+  }
+
+
+  const mySkillNames =
+    (mySkills || []).map(x => x.skill);
+
+
+  const {
+    data: people,
+    error
+  } = await sb
     .from("profiles")
-    .select("id,name,college,year,experience,looking_for,problem_interest,domains,profile_skills(skill)")
-    .neq("id",user.id)
+    .select(`
+      id,
+      name,
+      college,
+      year,
+      experience,
+      looking_for,
+      problem_interest,
+      domains,
+      profile_skills(skill)
+    `)
+    .neq("id", user.id)
     .limit(100);
 
-  if(error){
-    showTeamMessage("Could not load matches", error.message);
+
+  if (error) {
+    showTeamMessage(
+      "Could not load matches",
+      error.message
+    );
+
     return;
   }
 
-  const ranked = (people || [])
-    .map(person => ({
-      ...person,
-      score:calculateMatch(me,person,mySkillNames)
-    }))
-    .sort((a,b) => b.score-a.score)
-    .slice(0,10);
 
-  const box = document.getElementById("matches");
+  const ranked =
+    (people || [])
+      .map(person => ({
+        ...person,
+        score: calculateMatch(
+          me,
+          person,
+          mySkillNames
+        )
+      }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 10);
 
-  if(!ranked.length){
+
+  const box =
+    document.getElementById("matches");
+
+
+  if (!ranked.length) {
+
     box.innerHTML = `
       <div class="match-card">
-        <div class="section-mini">TEAM MATCHES</div>
-        <div style="color:#8997a5;font-size:.8rem">
-          No other student profiles are available yet. Share the page with students who want to form SIH teams.
+
+        <div class="section-mini">
+          TEAM MATCHES
         </div>
-      </div>`;
+
+        <div style="color:#8997a5;font-size:.8rem">
+          No other student profiles are available yet.
+          Share the page with students who want to form SIH teams.
+        </div>
+
+      </div>
+    `;
+
     return;
   }
 
+
   box.innerHTML = `
-    <div class="section-mini" style="margin-top:25px">TOP TEAMMATE MATCHES</div>
+    <div class="section-mini"
+         style="margin-top:25px">
+      TOP TEAMMATE MATCHES
+    </div>
+
     ${ranked.map(p => {
-      const skills = (p.profile_skills || []).map(x=>x.skill);
-      const domains = (p.domains || []).join(" • ");
+
+      const skills =
+        (p.profile_skills || [])
+          .map(x => x.skill);
+
+      const domains =
+        (p.domains || []).join(" • ");
+
       return `
         <div class="match-card">
+
           <div class="match-top">
+
             <div>
-              <div class="match-name">${escapeHtml(p.name)}</div>
-              <div class="match-meta">${escapeHtml(p.college)} • ${escapeHtml(p.year)} • ${escapeHtml(p.experience)}</div>
+              <div class="match-name">
+                ${escapeHtml(p.name)}
+              </div>
+
+              <div class="match-meta">
+                ${escapeHtml(p.college)}
+                •
+                ${escapeHtml(p.year)}
+                •
+                ${escapeHtml(p.experience)}
+              </div>
             </div>
-            <div class="match-score">${p.score}% MATCH</div>
+
+            <div class="match-score">
+              ${p.score}% MATCH
+            </div>
+
           </div>
+
+
           <div class="match-skills">
-            ${skills.map(s=>`<span class="match-skill">${escapeHtml(s)}</span>`).join("")}
+
+            ${skills.map(s => `
+              <span class="match-skill">
+                ${escapeHtml(s)}
+              </span>
+            `).join("")}
+
           </div>
-          <div class="match-meta">Interested in: ${escapeHtml(domains || "Multiple domains")}</div>
-          ${p.problem_interest ? `<div class="match-meta" style="margin-top:5px">Problem: ${escapeHtml(p.problem_interest)}</div>` : ""}
+
+
+          <div class="match-meta">
+            Interested in:
+            ${escapeHtml(domains || "Multiple domains")}
+          </div>
+
+
+          ${
+            p.problem_interest
+              ? `
+                <div class="match-meta"
+                     style="margin-top:5px">
+                  Problem:
+                  ${escapeHtml(p.problem_interest)}
+                </div>
+              `
+              : ""
+          }
+
+
           <div style="margin-top:13px">
-            <button class="btn btn-primary" type="button"
-              onclick="sendTeamRequest('${p.id}')">SEND TEAM REQUEST →</button>
+
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="sendTeamRequest('${p.id}')">
+
+              SEND TEAM REQUEST →
+
+            </button>
+
           </div>
-        </div>`;
-    }).join("")}`;
+
+        </div>
+      `;
+
+    }).join("")}
+  `;
 }
 
-async function sendTeamRequest(receiverId){
+
+/* ============================================================
+   SEND TEAM REQUEST
+   ============================================================ */
+
+async function sendTeamRequest(receiverId) {
+
   const user = await currentUser();
-  if(!user) return;
 
-  if(receiverId === user.id) return;
+  if (!user || receiverId === user.id) return;
 
-  const {data:existing} = await sb
+
+  const {
+    data: existing
+  } = await sb
     .from("team_requests")
     .select("id,status")
-    .eq("sender_id",user.id)
-    .eq("receiver_id",receiverId)
+    .eq("sender_id", user.id)
+    .eq("receiver_id", receiverId)
     .maybeSingle();
 
-  if(existing){
-    showTeamMessage("Request already exists", `Current status: ${existing.status}.`);
+
+  if (existing) {
+
+    showTeamMessage(
+      "Request already exists",
+      `Current status: ${existing.status}.`
+    );
+
     return;
   }
 
-  const {error} = await sb.from("team_requests").insert({
-    sender_id:user.id,
-    receiver_id:receiverId,
-    status:"pending"
-  });
 
-  if(error){
-    showTeamMessage("Request not sent", error.message);
+  const { error } =
+    await sb
+      .from("team_requests")
+      .insert({
+        sender_id: user.id,
+        receiver_id: receiverId,
+        status: "pending"
+      });
+
+
+  if (error) {
+
+    showTeamMessage(
+      "Request not sent",
+      error.message
+    );
+
     return;
   }
 
-  showTeamMessage("Team request sent", "The student can now accept or reject your request.");
-  await loadMyRequests();
-}
-
-async function loadMyRequests(){
-  const user = await currentUser();
-  if(!user) return;
-
-  const {data:incoming} = await sb
-    .from("team_requests")
-    .select("id,status,created_at,sender:profiles!team_requests_sender_id_fkey(name,college)")
-    .eq("receiver_id",user.id)
-    .order("created_at",{ascending:false})
-    .limit(20);
-
-  const {data:outgoing} = await sb
-    .from("team_requests")
-    .select("id,status,created_at,receiver:profiles!team_requests_receiver_id_fkey(name,college)")
-    .eq("sender_id",user.id)
-    .order("created_at",{ascending:false})
-    .limit(20);
-
-  const box = document.getElementById("requests");
-  if(!(incoming || []).length && !(outgoing || []).length){
-    box.innerHTML = "";
-    return;
-  }
-
-  box.innerHTML = `
-    <div class="section-mini" style="margin-top:28px">TEAM REQUESTS</div>
-    ${(incoming || []).map(r => `
-      <div class="match-card">
-        <div class="match-top">
-          <div>
-            <div class="match-name">${escapeHtml(r.sender?.name || "Student")}</div>
-            <div class="match-meta">${escapeHtml(r.sender?.college || "")} wants to connect with you.</div>
-          </div>
-          <span class="status ${escapeHtml(r.status)}">${escapeHtml(r.status.toUpperCase())}</span>
-        </div>
-        ${r.status === "pending" ? `
-          <div style="margin-top:13px;display:flex;gap:7px;flex-wrap:wrap">
-            <button class="btn btn-primary" type="button" onclick="updateRequest('${r.id}','accepted')">ACCEPT</button>
-            <button class="btn btn-ghost" type="button" onclick="updateRequest('${r.id}','rejected')">REJECT</button>
-          </div>` : ""}
-      </div>`).join("")}
-
-    ${(outgoing || []).map(r => `
-      <div class="match-card">
-        <div class="match-top">
-          <div>
-            <div class="match-name">Request to ${escapeHtml(r.receiver?.name || "Student")}</div>
-            <div class="match-meta">${escapeHtml(r.receiver?.college || "")}</div>
-          </div>
-          <span class="status ${escapeHtml(r.status)}">${escapeHtml(r.status.toUpperCase())}</span>
-        </div>
-      </div>`).join("")}`;
-}
-
-async function updateRequest(requestId,status){
-  const user = await currentUser();
-  if(!user) return;
-
-  const {error} = await sb
-    .from("team_requests")
-    .update({status})
-    .eq("id",requestId)
-    .eq("receiver_id",user.id);
-
-  if(error){
-    showTeamMessage("Could not update request", error.message);
-    return;
-  }
 
   showTeamMessage(
-    status === "accepted" ? "Request accepted" : "Request rejected",
-    status === "accepted"
-      ? "You can now coordinate with this teammate and create your SIH team."
-      : "The request was marked as rejected."
+    "Team request sent",
+    "The student can now accept or reject your request."
   );
 
   await loadMyRequests();
 }
 
-document.getElementById("teamSubmit").onclick = saveTeamProfile;
-document.getElementById("authButton").onclick = signInWithEmail;
-document.getElementById("signOutButton").onclick = signOut;
 
-if(sb){
-  sb.auth.onAuthStateChange(() => refreshAuthUI());
+/* ============================================================
+   REQUESTS
+   ============================================================ */
+
+async function loadMyRequests() {
+
+  const user = await currentUser();
+
+  if (!user) return;
+
+
+  const {
+    data: incoming
+  } = await sb
+    .from("team_requests")
+    .select(`
+      id,
+      status,
+      created_at,
+      sender:profiles!team_requests_sender_id_fkey(
+        name,
+        college
+      )
+    `)
+    .eq("receiver_id", user.id)
+    .order("created_at", {
+      ascending: false
+    })
+    .limit(20);
+
+
+  const {
+    data: outgoing
+  } = await sb
+    .from("team_requests")
+    .select(`
+      id,
+      status,
+      created_at,
+      receiver:profiles!team_requests_receiver_id_fkey(
+        name,
+        college
+      )
+    `)
+    .eq("sender_id", user.id)
+    .order("created_at", {
+      ascending: false
+    })
+    .limit(20);
+
+
+  const box =
+    document.getElementById("requests");
+
+
+  if (
+    !(incoming || []).length &&
+    !(outgoing || []).length
+  ) {
+    box.innerHTML = "";
+    return;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="section-mini"
+         style="margin-top:28px">
+      TEAM REQUESTS
+    </div>
+
+
+    ${(incoming || []).map(r => `
+
+      <div class="match-card">
+
+        <div class="match-top">
+
+          <div>
+
+            <div class="match-name">
+              ${escapeHtml(
+                r.sender?.name || "Student"
+              )}
+            </div>
+
+            <div class="match-meta">
+              ${escapeHtml(
+                r.sender?.college || ""
+              )}
+              wants to connect with you.
+            </div>
+
+          </div>
+
+
+          <span class="status ${escapeHtml(r.status)}">
+            ${escapeHtml(
+              r.status.toUpperCase()
+            )}
+          </span>
+
+        </div>
+
+
+        ${
+          r.status === "pending"
+            ? `
+              <div style="margin-top:13px;
+                          display:flex;
+                          gap:7px;
+                          flex-wrap:wrap">
+
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  onclick="updateRequest('${r.id}','accepted')">
+                  ACCEPT
+                </button>
+
+                <button
+                  class="btn btn-ghost"
+                  type="button"
+                  onclick="updateRequest('${r.id}','rejected')">
+                  REJECT
+                </button>
+
+              </div>
+            `
+            : ""
+        }
+
+      </div>
+
+    `).join("")}
+
+
+    ${(outgoing || []).map(r => `
+
+      <div class="match-card">
+
+        <div class="match-top">
+
+          <div>
+
+            <div class="match-name">
+              Request to
+              ${escapeHtml(
+                r.receiver?.name || "Student"
+              )}
+            </div>
+
+            <div class="match-meta">
+              ${escapeHtml(
+                r.receiver?.college || ""
+              )}
+            </div>
+
+          </div>
+
+
+          <span class="status ${escapeHtml(r.status)}">
+            ${escapeHtml(
+              r.status.toUpperCase()
+            )}
+          </span>
+
+        </div>
+
+      </div>
+
+    `).join("")}
+
+  `;
 }
+
+
+/* ============================================================
+   ACCEPT / REJECT
+   ============================================================ */
+
+async function updateRequest(requestId, status) {
+
+  const user = await currentUser();
+
+  if (!user) return;
+
+
+  const { error } =
+    await sb
+      .from("team_requests")
+      .update({ status })
+      .eq("id", requestId)
+      .eq("receiver_id", user.id);
+
+
+  if (error) {
+
+    showTeamMessage(
+      "Could not update request",
+      error.message
+    );
+
+    return;
+  }
+
+
+  showTeamMessage(
+    status === "accepted"
+      ? "Request accepted"
+      : "Request rejected",
+
+    status === "accepted"
+      ? "You can now coordinate with this teammate and create your SIH team."
+      : "The request was marked as rejected."
+  );
+
+
+  await loadMyRequests();
+}
+
+
+/* ============================================================
+   BUTTON EVENTS
+   ============================================================ */
+
+document.getElementById("teamSubmit").onclick =
+  saveTeamProfile;
+
+document.getElementById("authButton").onclick =
+  signInWithEmail;
+
+document.getElementById("signOutButton").onclick =
+  signOut;
+
+
+/* ============================================================
+   AUTH STATE
+   ============================================================ */
+
+if (sb) {
+  sb.auth.onAuthStateChange(() => {
+    refreshAuthUI();
+  });
+}
+
 refreshAuthUI();
 
-/* FAQ */
-document.querySelectorAll(".faq-q").forEach(q=>{
-  q.onclick = () => q.parentElement.classList.toggle("open");
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+
+document.querySelectorAll(".faq-q").forEach(q => {
+
+  q.onclick = () => {
+    q.parentElement.classList.toggle("open");
+  };
+
 });
 
-/* Mobile navigation */
-const menu = document.getElementById("menu");
-const links = document.getElementById("navLinks");
 
-menu.onclick = () => links.classList.toggle("open");
-links.querySelectorAll("a").forEach(a=>{
-  a.onclick = () => links.classList.remove("open");
+/* ============================================================
+   MOBILE NAVIGATION
+   ============================================================ */
+
+const menu =
+  document.getElementById("menu");
+
+const links =
+  document.getElementById("navLinks");
+
+
+menu.onclick = () =>
+  links.classList.toggle("open");
+
+
+links.querySelectorAll("a").forEach(a => {
+
+  a.onclick = () =>
+    links.classList.remove("open");
+
 });
 
-/* Scroll progress */
-const scrollProgress = document.getElementById("scrollProgress");
-window.addEventListener("scroll",()=>{
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  scrollProgress.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + "%";
-},{passive:true});
 
-/* Reveal animation */
-const observer = new IntersectionObserver(
-  entries => entries.forEach(entry=>{
-    if(entry.isIntersecting) entry.target.classList.add("visible");
-  }),
-  {threshold:.12}
-);
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+
+const scrollProgress =
+  document.getElementById("scrollProgress");
+
+
+window.addEventListener("scroll", () => {
+
+  const max =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
+
+  scrollProgress.style.width =
+    (
+      max > 0
+        ? window.scrollY / max * 100
+        : 0
+    ) + "%";
+
+}, { passive: true });
+
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+
+const observer =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+
+      });
+
+    },
+    { threshold: 0.12 }
+  );
+
+
+document
+  .querySelectorAll(".reveal")
+  .forEach(el => observer.observe(el));
+
 </script>
-
-</body>
-</html>
